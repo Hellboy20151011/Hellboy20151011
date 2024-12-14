@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('resource-money').textContent = `Geld: ${data.geld || 0}`;
       document.getElementById('resource-metal').textContent = `Metall: ${data.metall || 0}`;
       document.getElementById('resource-wood').textContent = `Holz: ${data.holz || 0}`;
-      document.getElementById('resource-energy').textContent = `Energie: ${data.energie || 0}`;
       document.getElementById('resource-stone').textContent = `Stein: ${data.stein || 0}`;
       document.getElementById('resource-fuel').textContent = `Treibstoff: ${data.treibstoff || 0}`;
       console.log('Updated resource elements'); // Debugging-Log
@@ -37,6 +36,27 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'index.html';
     } else {
       console.error('Failed to load resources:', response.statusText);
+    }
+  }
+
+  async function loadEnergy() {
+    const response = await fetch('/api/energy', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Energy data:', data); // Debugging-Log
+      document.getElementById('resource-energy').textContent = `Energie: ${data.capacity || 0}`;
+      console.log('Updated energy element'); // Debugging-Log
+    } else if (response.status === 403) {
+      console.error('Token expired or invalid. Redirecting to login.');
+      localStorage.removeItem('username');
+      localStorage.removeItem('token');
+      window.location.href = 'index.html';
+    } else {
+      console.error('Failed to load energy:', response.statusText);
     }
   }
 
@@ -73,5 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   loadResources();
+  loadEnergy();
   loadBuildings();
 });
