@@ -1,3 +1,5 @@
+
+
 const pool = require('../config/db');
 
 exports.getEnergy = async (req, res) => {

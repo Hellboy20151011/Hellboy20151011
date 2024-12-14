@@ -4,25 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Strategie-Browserspiel</title>
-  <link rel="stylesheet" href="../Css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <h1>Strategie-Browserspiel</h1>
   <div id="auth">
     <h2>Login</h2>
     <form id="loginForm">
-      <input type="text" id="loginUsername" placeholder="Username" required>
-      <input type="password" id="loginPassword" placeholder="Password" required>
+      <label for="loginUsername">Username:</label>
+      <input type="text" id="loginUsername" name="username" required>
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" name="password" required>
       <button type="submit">Login</button>
     </form>
     <h2>Register</h2>
     <form id="registerForm">
-      <input type="text" id="registerUsername" placeholder="Username" required>
-      <input type="password" id="registerPassword" placeholder="Password" required>
+      <label for="registerUsername">Username:</label>
+      <input type="text" id="registerUsername" name="username" required>
+      <label for="registerPassword">Password:</label>
+      <input type="password" id="registerPassword" name="password" required>
       <button type="submit">Register</button>
     </form>
   </div>
   <div id="buildings" style="display: none;"></div>
-  <script src="../JS/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
