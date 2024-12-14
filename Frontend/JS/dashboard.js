@@ -48,19 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (response.ok) {
       const data = await response.json();
       console.log('Buildings data:', data); // Debugging-Log
-      const buildingsList = document.getElementById('buildings-list');
-      buildingsList.innerHTML = '';
+      const buildingsTableBody = document.getElementById('buildings-table').querySelector('tbody');
+      buildingsTableBody.innerHTML = '';
       data.forEach(building => {
-        const buildingDiv = document.createElement('div');
-        buildingDiv.className = 'building';
-        buildingDiv.innerHTML = `
-          <h3>${building.name}</h3>
-          <p>${building.description}</p>
-          <p>Anzahl: ${building.quantity}</p>
-          <p>Erstellt am: ${new Date(building.created_at).toLocaleString()}</p>
-          <p>Zuletzt aktualisiert: ${new Date(building.last_updated).toLocaleString()}</p>
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${building.name}</td>
+          <td>${building.quantity}</td>
         `;
-        buildingsList.appendChild(buildingDiv);
+        buildingsTableBody.appendChild(row);
       });
     } else if (response.status === 403) {
       console.error('Token expired or invalid. Redirecting to login.');

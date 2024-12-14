@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
@@ -30,9 +30,19 @@
     </nav>
     <section id="content">
       <h2>Gebäude</h2>
-      <div id="buildings-list"></div>
+      <table id="buildings-table">
+        <thead>
+          <tr>
+            <th>Gebäude</th>
+            <th>Anzahl</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Gebäude-Daten werden hier eingefügt -->
+        </tbody>
+      </table>
     </section>
   </main>
-  <script src="../js/dashboard.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>
