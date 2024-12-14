@@ -1,0 +1,15 @@
+{
+    "name": "strategiespiel-backend",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^9.0.2",
+        "pg": "^8.7.1",
+        "strategiespiel-backend": "file:"
+    }
+}
