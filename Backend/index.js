@@ -8,7 +8,7 @@ app.use(express.json());
 app.use('/api', apiRoutes);
 
 // Statische Dateien aus dem frontend-Ordner bereitstellen
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../Frontend')));
 
 app.listen(port, () => {
   console.log(`Backend server is running at http://localhost:${port}`);

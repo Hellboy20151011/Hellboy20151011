@@ -1,17 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const path = require('path')
-
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'browsergame_1',
-  password: 'Arkona123!',
-  port: 5432,
-});
+const pool = require('../config/db');
 
 const secretKey = 'your_secret_key';
 
