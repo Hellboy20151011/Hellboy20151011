@@ -39,27 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  async function loadEnergy() {
-    const response = await fetch('/api/energy', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    if (response.ok) {
-      const data = await response.json();
-      console.log('Energy data:', data); // Debugging-Log
-      document.getElementById('resource-energy').textContent = `Energie: ${data.capacity || 0}`;
-      console.log('Updated energy element'); // Debugging-Log
-    } else if (response.status === 403) {
-      console.error('Token expired or invalid. Redirecting to login.');
-      localStorage.removeItem('username');
-      localStorage.removeItem('token');
-      window.location.href = 'index.html';
-    } else {
-      console.error('Failed to load energy:', response.statusText);
-    }
-  }
-
   async function loadBuildings() {
     const response = await fetch('/api/buildings', {
       headers: {
@@ -68,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (response.ok) {
       const data = await response.json();
+      console.log('Buildings data:', data); // Debugging-Log
       const buildingsList = document.getElementById('buildings-list');
       buildingsList.innerHTML = '';
       data.forEach(building => {
@@ -76,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         buildingDiv.innerHTML = `
           <h3>${building.name}</h3>
           <p>${building.description}</p>
-          <p>Kosten Geld: ${building.cost_money}</p>
-          <p>Kosten Metall: ${building.cost_metal}</p>
-          <p>Kosten Holz: ${building.cost_wood}</p>
+          <p>Anzahl: ${building.quantity}</p>
+          <p>Erstellt am: ${new Date(building.created_at).toLocaleString()}</p>
+          <p>Zuletzt aktualisiert: ${new Date(building.last_updated).toLocaleString()}</p>
         `;
         buildingsList.appendChild(buildingDiv);
       });
@@ -93,6 +73,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   loadResources();
-  loadEnergy();
   loadBuildings();
 });
