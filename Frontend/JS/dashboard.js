@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const username = localStorage.getItem('username');
   const token = localStorage.getItem('token');
   if (!username || !token) {
@@ -48,16 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (response.ok) {
       const data = await response.json();
       console.log('Buildings data:', data); // Debugging-Log
-      const buildingsTableBody = document.getElementById('buildings-table').querySelector('tbody');
-      buildingsTableBody.innerHTML = '';
+      const tableBody = document.getElementById('buildings-table-body');
+      tableBody.innerHTML = '';
+
       data.forEach(building => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${building.name}</td>
+          <td>${building.description}</td>
           <td>${building.quantity}</td>
         `;
-        buildingsTableBody.appendChild(row);
+        tableBody.appendChild(row);
       });
+      console.log('Updated buildings table'); // Debugging-Log
     } else if (response.status === 403) {
       console.error('Token expired or invalid. Redirecting to login.');
       localStorage.removeItem('username');
@@ -68,6 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  loadResources();
-  loadBuildings();
+  await loadResources();
+  await loadBuildings();
 });

@@ -4,45 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="js/dashboard.js" defer></script>
 </head>
 <body>
-  <header>
-    <div id="status-bar">
-      <span id="resource-money">Geld: 0</span>
-      <span id="resource-metal">Metall: 0</span>
-      <span id="resource-wood">Holz: 0</span>
-      <span id="resource-energy">Energie: 0</span>
-      <span id="resource-stone">Stein: 0</span>
-      <span id="resource-fuel">Treibstoff: 0</span>
+  <div id="dashboard">
+    <h1>Willkommen, <span id="username"></span></h1>
+    <button id="logout">Logout</button>
+
+    <h2>Ressourcen</h2>
+    <div id="resources">
+      <p id="resource-money"></p>
+      <p id="resource-metal"></p>
+      <p id="resource-wood"></p>
+      <p id="resource-stone"></p>
+      <p id="resource-fuel"></p>
     </div>
-    <div id="user-info">
-      <span id="username"></span>
-      <button id="logout">Logout</button>
-    </div>
-  </header>
-  <main>
-    <nav id="sidebar">
-      <ul>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="bauhof.html">Bauhof</a></li>
-      </ul>
-    </nav>
-    <section id="content">
-      <h2>Gebäude</h2>
-      <table id="buildings-table">
-        <thead>
-          <tr>
-            <th>Gebäude</th>
-            <th>Anzahl</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Gebäude-Daten werden hier eingefügt -->
-        </tbody>
-      </table>
-    </section>
-  </main>
-  <script src="js/dashboard.js"></script>
+
+    <h2>Gebäude</h2>
+    <table id="buildings-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Beschreibung</th>
+          <th>Anzahl</th>
+        </tr>
+      </thead>
+      <tbody id="buildings-table-body">
+        <!-- Gebäudedaten werden hier eingefügt -->
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
