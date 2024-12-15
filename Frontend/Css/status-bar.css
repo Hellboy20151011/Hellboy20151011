@@ -1,0 +1,11 @@
+#status-bar {
+  background-color: #1e1e1e; /* Dunkelgrau für die Statusleiste */
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px solid #444; /* Eine klare Abgrenzung */
+  color: #f1f1f1; /* Helle Schriftfarbe */
+}
+
+#status-bar span {
+  margin: 0 10px;
+}

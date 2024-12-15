@@ -14,31 +14,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.location.href = 'index.html';
   });
 
-  async function loadResources() {
-    const response = await fetch('/api/resources', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    if (response.ok) {
-      const data = await response.json();
-      console.log('Resources data:', data); // Debugging-Log
-      document.getElementById('resource-money').textContent = `Geld: ${data.geld || 0}`;
-      document.getElementById('resource-metal').textContent = `Metall: ${data.metall || 0}`;
-      document.getElementById('resource-wood').textContent = `Holz: ${data.holz || 0}`;
-      document.getElementById('resource-stone').textContent = `Stein: ${data.stein || 0}`;
-      document.getElementById('resource-fuel').textContent = `Treibstoff: ${data.treibstoff || 0}`;
-      console.log('Updated resource elements'); // Debugging-Log
-    } else if (response.status === 403) {
-      console.error('Token expired or invalid. Redirecting to login.');
-      localStorage.removeItem('username');
-      localStorage.removeItem('token');
-      window.location.href = 'index.html';
-    } else {
-      console.error('Failed to load resources:', response.statusText);
-    }
-  }
-
   async function loadBuildings() {
     const response = await fetch('/api/buildings', {
       headers: {
@@ -71,6 +46,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  await loadResources();
   await loadBuildings();
 });

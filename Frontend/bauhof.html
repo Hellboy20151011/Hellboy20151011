@@ -5,54 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bauhof</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <script src="js/bauhof.js" defer></script>
 </head>
 <body>
-  <header>
-    <div id="status-bar">
-      <span id="resource-money">Geld: 0</span>
-      <span id="resource-metal">Metall: 0</span>
-      <span id="resource-wood">Holz: 0</span>
-      <span id="resource-energy">Energie: 0</span>
-      <span id="resource-stone">Stein: 0</span>
-      <span id="resource-fuel">Treibstoff: 0</span>
-    </div>
-    <div id="user-info">
-      <span id="username"></span>
-      <button id="logout">Logout</button>
-    </div>
-  </header>
-  <main>
-    <nav id="sidebar">
-      <ul>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="bauhof.html">Bauhof</a></li>
-      </ul>
-    </nav>
-    <section id="content">
-      <h2>Bauhof</h2>
-      <div id="buildings-list"></div>
-      <div id="bauhof">
-        <h1>Bauhof</h1>
-        <div id="energy-data">
-          <h2>Energy Data</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Capacity</th>
-                <th>Production</th>
-                <th>Consumption</th>
-              </tr>
-            </thead>
-            <tbody id="energy-table-body">
-              <!-- Energiedaten werden hier eingefügt -->
-            </tbody>
-          </table>
-        </div>
-        <button id="build-power-plant">Build Power Plant</button>
+  <nav>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="bauhof.html">Bauhof</a></li>
+      <li><a href="resources.html">Ressourcen</a></li>
+      <li><a href="#" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div id="main-content">
+    <div id="status-bar-container"></div>
+
+    <div id="bauhof">
+      <h1>Bauhof</h1>
+      <div id="energy-data">
+        <h2>Energy Data</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Capacity</th>
+              <th>Production</th>
+              <th>Consumption</th>
+            </tr>
+          </thead>
+          <tbody id="energy-data-body">
+            <!-- Energiedaten werden hier eingefügt -->
+          </tbody>
+        </table>
       </div>
-    </section>
-  </main>
-  <script src="../js/bauhof.js"></script>
+      <button id="build-power-plant">Kraftwerk bauen</button>
+    </div>
+  </div>
+
+  <div id="server-time-container">
+    <span id="server-time"></span>
+  </div>
+
+  <script>
+    // Lade die Ressourcenstatusleiste
+    fetch('status-bar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('status-bar-container').innerHTML = data;
+      });
+  </script>
 </body>
 </html>
